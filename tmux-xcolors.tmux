@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 getHexFromLine() {
 	trimmedLine="$(echo -e "$1" | tr -d '[:space:]')"
@@ -9,9 +9,9 @@ getHexFromLine() {
 # $2 should be the tmux color to set
 setColorFromHex() {
 	getHexFromLine "$line"
-	echo "$HEX"
-    prefix="tmux_"
-    eval "$prefix$2=$HEX"
+	prefix="tmux_"
+	command="$prefix$2=$HEX"
+	export "${command?}"
 }
 
 Xresources=~/.Xresources.colors
